@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workers</title>
+    <style>
+        table,th,td{
+            border:1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>List of Employees</h1><hr>
+    <a href="{% url 'workers:add' %}" style="float:right">Add New Employee</a>
+    <div style="clear:both;"></div><br>
+    <table style="width: 100%">
+        <thead>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Designation</td>
+            <td>Email</td>
+            <td>Phone</td>
+            <td>Address</td>
+            <td>City</td>
+            <td>State</td>
+            <td>Age</td>
+            <td colspan="2">Action</td>
+        </thead>
+        <tbody>
+            {% for Employee in workers %}
+            <tr>
+                <td>{{ Employee.first_name }}</td>
+                <td>{{ Employee.last_name }}</td>
+                <td>{{ Employee.designation }}</td>
+                <td>{{ Employee.email }}</td>
+                <td>{{ Employee.phone }}</td>
+                <td>{{ Employee.address }}</td>
+                <td>{{ Employee.city }}</td>
+                <td>{{ Employee.state }}</td>
+                <td>{{ Employee.age }}</td>
+                <td><a href="{% url 'workers.edit' worker.id %}">Edit</a></td>
+                <td><a href="{% url 'workers.delete' worker.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
